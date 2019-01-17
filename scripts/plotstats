@@ -1,0 +1,12 @@
+#!/bin/bash
+
+type=pdf
+path=$1
+
+f=${path}/${$}.asy
+fe=${$}.${type}
+echo "string path=\"${path}\";" > $f
+cat scripts/stats.asy >> $f
+asy $f -f ${type}
+mv ${fe} ${path}/stats.${type}
+rm -f $f

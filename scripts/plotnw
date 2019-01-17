@@ -1,0 +1,13 @@
+#!/bin/bash
+
+type=png
+path=$2
+
+f=${path}/${$}.asy
+fe=${$}.${type}
+echo "string infile=\"${path}/nw$1.dat\";" > $f
+cat scripts/nw.asy >> $f
+asy $f -f ${type}
+number=`printf "%03d" $1`
+mv ${fe} ${path}/nw_${number}.${type}
+rm -f $f
